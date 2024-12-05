@@ -1,9 +1,10 @@
 package com.lyubich.toolrental.service;
 
-import com.lyubich.toolrental.exception.RentalException;
 import com.lyubich.toolrental.dto.RentalAgreement;
 import com.lyubich.toolrental.dto.Tool;
 import com.lyubich.toolrental.dto.ToolType;
+import com.lyubich.toolrental.exception.RentalException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +12,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Service
+@AllArgsConstructor
 public class CheckoutService {
 
   private final PricingService pricingService;
   private final ChargeableDaysService chargeableDaysService;
   private final ToolTypeService toolTypeService;
   private final ToolService toolService;
-
-  @Autowired
-  public CheckoutService(PricingService pricingService, ChargeableDaysService chargeableDaysService, ToolTypeService toolTypeService, ToolService toolService) {
-    this.pricingService = pricingService;
-    this.chargeableDaysService = chargeableDaysService;
-    this.toolTypeService = toolTypeService;
-    this.toolService = toolService;
-  }
 
   public RentalAgreement checkout(String toolCode, int rentalDays, int discountPercent, LocalDate checkoutDate) throws RentalException {
     Tool tool;
@@ -56,19 +50,11 @@ public class CheckoutService {
       BigDecimal discountAmount = pricingService.calculateDiscount(preDiscountCharge, discountPercent);
       BigDecimal finalCharge = pricingService.calculateFinalCharge(preDiscountCharge, discountAmount);
 
-      return new RentalAgreement(
-          tool,
-          toolType,
-          checkoutDate,
-          checkoutDate.plusDays(rentalDays),
-          toolType.getDailyCharge(),
-          rentalDays,
-          chargeDays,
-          preDiscountCharge,
-          discountPercent,
-          discountAmount,
-          finalCharge
+      return RentalAgreement.create(
+          tool, toolType, rentalDays, checkoutDate, checkoutDate.plusDays(rentalDays), toolType.getDailyCharge(),
+          chargeDays, preDiscountCharge, discountPercent, discountAmount, finalCharge
       );
+
     } catch (RentalException e) {
       throw e;
     } catch (Exception e) {

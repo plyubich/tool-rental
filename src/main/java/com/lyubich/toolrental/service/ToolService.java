@@ -1,22 +1,19 @@
 package com.lyubich.toolrental.service;
 
-import com.lyubich.toolrental.exception.RentalException;
 import com.lyubich.toolrental.dto.Tool;
+import com.lyubich.toolrental.exception.RentalException;
 import com.lyubich.toolrental.repository.ToolRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ToolService {
 
   private final ToolRepository toolRepository;
-
-  @Autowired
-  public ToolService(ToolRepository toolRepository) {
-    this.toolRepository = toolRepository;
-  }
 
   public List<Tool> getAllToolTypes() {
     return toolRepository.findAll();

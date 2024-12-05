@@ -1,5 +1,6 @@
 package com.lyubich.toolrental.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;

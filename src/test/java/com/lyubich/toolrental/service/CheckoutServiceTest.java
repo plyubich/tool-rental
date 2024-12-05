@@ -1,8 +1,8 @@
 package com.lyubich.toolrental.service;
 
 import com.lyubich.toolrental.config.TestConfig;
-import com.lyubich.toolrental.exception.RentalException;
 import com.lyubich.toolrental.dto.RentalAgreement;
+import com.lyubich.toolrental.exception.RentalException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,8 +48,6 @@ class CheckoutServiceTest {
     assertEquals(10, agreement.getDiscountPercent());
     assertEquals(new BigDecimal("1.20"), agreement.getDiscountAmount());
     assertEquals(new BigDecimal("10.76"), agreement.getFinalCharge());
-
-    System.out.println(agreement);
   }
 
   @Test

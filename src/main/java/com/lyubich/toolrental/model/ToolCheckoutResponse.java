@@ -1,20 +1,22 @@
 package com.lyubich.toolrental.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ToolCheckoutResponse {
-    @JsonProperty("agreement")
-    private RentalAgreementResponse agreement;
+  @JsonProperty("agreement")
+  private RentalAgreementResponse agreement;
 
-    @JsonProperty("success")
-    private boolean success;
+  @JsonProperty("success")
+  private boolean success;
 
-    @JsonProperty("message")
-    private String message;
+  @JsonProperty("message")
+  private String message;
 }

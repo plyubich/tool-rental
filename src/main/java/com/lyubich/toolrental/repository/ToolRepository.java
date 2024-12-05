@@ -6,6 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ToolRepository extends JpaRepository<Tool, String> {
-
   Tool findByCode(String toolCode);
 }

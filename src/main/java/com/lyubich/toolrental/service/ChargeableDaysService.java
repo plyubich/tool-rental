@@ -1,6 +1,7 @@
 package com.lyubich.toolrental.service;
 
 import com.lyubich.toolrental.dto.ToolType;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,14 +9,10 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 @Service
+@AllArgsConstructor
 public class ChargeableDaysService {
 
   private final HolidayService holidayService;
-
-  @Autowired
-  public ChargeableDaysService(HolidayService holidayService) {
-    this.holidayService = holidayService;
-  }
 
   public int calculateChargeDays(ToolType toolType, LocalDate checkoutDate, int rentalDays) {
     // Charge days - Count of chargeable days, from day after checkout through and including due
