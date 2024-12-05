@@ -1,16 +1,15 @@
 package com.lyubich.toolrental.dto;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "rental_agreements")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
 public class RentalAgreement {

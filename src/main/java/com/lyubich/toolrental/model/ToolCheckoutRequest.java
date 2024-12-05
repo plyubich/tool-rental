@@ -15,10 +15,13 @@ import java.time.LocalDate;
 public class ToolCheckoutRequest {
   @JsonProperty("tool_code")
   private String toolCode;
+
   @JsonProperty("rental_days")
   private int rentalDays;
+
   @JsonProperty("discount_percent")
   private int discountPercent;
+
   @JsonProperty("checkout_date")
   private LocalDate checkoutDate;
 }
