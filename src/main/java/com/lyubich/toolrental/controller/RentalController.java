@@ -39,6 +39,8 @@ public class RentalController {
     );
 
     ToolCheckoutResponse response = new ToolCheckoutResponse(responseRentalAgreement, true, "Checkout successful");
+
+    System.out.println("Response: " + response);
     return response;
   }
 
@@ -49,7 +51,7 @@ public class RentalController {
       RentalAgreement agreement = checkoutService.checkout(
           request.getToolCode(),
           request.getRentalDays(),
-          request.getDiscountPercent(),
+          request.getDiscount(),
           request.getCheckoutDate()
       );
 

@@ -46,4 +46,25 @@ public class RentalAgreementResponse {
 
   @JsonProperty("final_charge")
   private double finalCharge;
+
+  @Override
+  public String toString() {
+    return String.format(
+        "Tool code: %s\n" +
+            "Tool type: %s\n" +
+            "Tool brand: %s\n" +
+            "Rental days: %d\n" +
+            "Check out date: %s\n" +
+            "Due date: %s\n" +
+            "Daily rental charge: $%.2f\n" +
+            "Charge days: %d\n" +
+            "Pre-discount charge: $%.2f\n" +
+            "Discount percent: %d%%\n" +
+            "Discount amount: $%.2f\n" +
+            "Final charge: $%.2f",
+        toolCode, toolType, toolBrand, rentalDays, checkoutDate, dueDate,
+        dailyRentalCharge, chargeDays, preDiscountCharge, discountPercent,
+        discountAmount, finalCharge
+    );
+  }
 }

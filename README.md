@@ -1,52 +1,57 @@
-# **Tool Rental Application**
+# Tool Rental Application
 
 ## Overview
 
-The **Tool Rental Application** is a foundational Java-based system designed to manage tool rentals for a hardware
-store. While it serves as a basic starting point, the architecture and design principles ensure the system is extendable
-and capable of evolving into a large-scale, globally distributed application. With future enhancements, it can support
-enterprise-level requirements such as high availability, scalability, monitoring, and continuous deployment to meet the
-demands of a modern rental business.
+The Tool Rental Application is a Java-based system designed to manage tool rentals for hardware stores. Built with scalability in mind, this foundational system can evolve into a large-scale, globally distributed application capable of meeting enterprise-level requirements such as high availability, scalability, monitoring, and continuous deployment.
 
 ## Key Features
 
-This initial implementation focuses on core functionality:
+The application offers core functionality essential for a modern rental business:
 
-- **Tool Management**: Handles different tool types and brands.
-- **Rental Fee Calculation**: Calculates rental charges based on **rental type**, **rental duration**, and **applicable
-  adjustments** (e.g., holidays, weekends).
-- **Multi-Category Rentals**: Supports rentals for other items beyond tools, such as cars, trucks, or other equipment.
-- **Reservation Management**: Allows customers to create and cancel reservations seamlessly.
-- **Discount Application**: Applies discounts based on user-defined criteria.
-- **Rental Agreements**: Generates detailed rental agreements for customers.
-
-These features establish the groundwork for future growth, allowing the application to scale and adapt to emerging
-business needs.
+- **Tool Management**: Efficiently handles various tool types and brands.
+- **Rental Fee Calculation**: Computes charges based on rental type, duration, and applicable adjustments.
+- **Discount Application**: Applies discounts according to user-defined criteria.
+- **Rental Agreements**: Generates comprehensive rental agreements for customers.
 
 ## Running the Application
-
-To run using Maven
+To run the application using Maven:
 
 ```bash
-mvn spring-boot:run
+kill -9 $(lsof -t -i:8080)
+mvn clean package -U
+mvn spring-boot:run -X
 ```
 
-#### If port `8080` is in use, you can kill the process using the following command:
+### Sample Checkout Request
+Use the following curl command to test the checkout endpoint:
+
+```bash
+curl -X POST http://localhost:8080/api/v1/rentals/tools/checkout \
+-H "Content-Type: application/json" \
+-d '{"toolCode": "LADW", "rentalDays": 3, "discount": 10, "checkoutDate": "2024-12-04"}'
+```
+
+## Command Line Execution
+To run the application with command line arguments:
+
+```bash
+kill -9 $(lsof -t -i:8080)
+mvn clean package -U
+mvn spring-boot:run -Dspring-boot.run.arguments="LADW 3 10 12/4/2024"
+```
+
+## Server Configuration
+The application runs on port 8080 by default. To release the port if it's in use:
 
 ```bash
 kill -9 $(lsof -t -i:8080)
 ```
 
-### Server Configuration
+## API Endpoints
+- `POST /api/v1/rentals/tools/checkout`: Initiates a tool rental checkout process.
 
-The application runs on port `8080` by default. You can configure the server port in the `application.properties` file.
-
-### API Endpoints
-
-- **`POST /api/v1/rentals/tools/checkout`**: Checkout a tool for rental.
-
-### Sample Request
-
+### Sample Request and Response
+**Request:**
 ```json
 {
   "toolCode": "LADW",
@@ -56,8 +61,7 @@ The application runs on port `8080` by default. You can configure the server por
 }
 ```
 
-### Sample Response
-
+**Response:**
 ```json
 {
   "rentalAgreement": {
@@ -77,16 +81,9 @@ The application runs on port `8080` by default. You can configure the server por
 }
 ```
 
-### Sample Curl Command
-
-```bash
-curl -X POST http://localhost:8080/api/v1/rentals/tools/checkout \
--H "Content-Type: application/json" \
--d '{"toolCode": "LADW", "rentalDays": 3, "discount": 10, "checkoutDate": "2024-12-04"}'
-```
-
-## Run Tests
-To run tests using Maven. You can modify the test cases in the `src/test/java/com/lyubich/toolrental/service/CheckoutServiceTest.java` file.
+## Running Tests
+Execute tests using Maven:
+- Modify test cases in `src/test/java/com/lyubich/toolrental/service/CheckoutServiceTest.java` as needed.
 
 ```bash
 mvn test

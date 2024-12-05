@@ -13,6 +13,6 @@ import java.time.LocalDate;
 public class ToolCheckoutRequest {
   private String toolCode;
   private int rentalDays;
-  private int discountPercent;
+  private int discount;
   private LocalDate checkoutDate;
 }
