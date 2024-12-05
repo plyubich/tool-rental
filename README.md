@@ -63,7 +63,6 @@ The low-level design dives deeper into specific components and their relationshi
 
 ### Future Architecture
 For future scalability and extensibility, the application can evolve into a microservices-based architecture:
-![future_architecture.png](resources/readme/future_architecture.png)
 ![future_architecture.jpeg](resources/readme/future_architecture.jpeg)
 
 ## Why This System Matters
