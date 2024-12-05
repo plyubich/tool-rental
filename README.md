@@ -31,6 +31,12 @@ To run using Maven
 mvn spring-boot:run
 ```
 
+#### If port `8080` is in use, you can kill the process using the following command:
+
+```bash
+kill -9 $(lsof -t -i:8080)
+```
+
 ### Server Configuration
 
 The application runs on port `8080` by default. You can configure the server port in the `application.properties` file.
@@ -76,7 +82,14 @@ The application runs on port `8080` by default. You can configure the server por
 ```bash
 curl -X POST http://localhost:8080/api/v1/rentals/tools/checkout \
 -H "Content-Type: application/json" \
--d '{"toolCode": "LADW", "rentalDays": 3, "discount": 10, "checkoutDate": "12/4/2024"}'
+-d '{"toolCode": "LADW", "rentalDays": 3, "discount": 10, "checkoutDate": "2024-12-04"}'
+```
+
+## Run Tests
+To run tests using Maven. You can modify the test cases in the `src/test/java/com/lyubich/toolrental/service/CheckoutServiceTest.java` file.
+
+```bash
+mvn test
 ```
 
 ## Vision for Expansion

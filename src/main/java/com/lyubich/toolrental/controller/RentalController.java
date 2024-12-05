@@ -44,6 +44,7 @@ public class RentalController {
 
   @PostMapping(value = "/checkout", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<ToolCheckoutResponse> checkout(@RequestBody ToolCheckoutRequest request) throws RentalException {
+    System.out.println("Request: " + request);
     try {
       RentalAgreement agreement = checkoutService.checkout(
           request.getToolCode(),
@@ -55,9 +56,11 @@ public class RentalController {
       ToolCheckoutResponse response = getResponse(agreement);
       return ResponseEntity.ok(response);
     } catch (RentalException | IllegalArgumentException e) {
+      System.out.println(e);
       RentalException errorResponse = new RentalException(e.getMessage());
       return ResponseEntity.badRequest().body(new ToolCheckoutResponse(null, false, errorResponse.getMessage()));
     } catch (Exception e) {
+      System.out.println(e);
       RentalException errorResponse = new RentalException("An unexpected error occurred");
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ToolCheckoutResponse(null, false, errorResponse.getMessage()));
     }

@@ -48,8 +48,6 @@ class CheckoutServiceTest {
     assertEquals(10, agreement.getDiscountPercent());
     assertEquals(new BigDecimal("1.20"), agreement.getDiscountAmount());
     assertEquals(new BigDecimal("10.76"), agreement.getFinalCharge());
-
-    System.out.println(agreement);
   }
 
   @Test
