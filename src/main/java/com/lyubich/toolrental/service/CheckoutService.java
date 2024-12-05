@@ -1,9 +1,9 @@
 package com.lyubich.toolrental.service;
 
-import com.lyubich.toolrental.exception.RentalException;
 import com.lyubich.toolrental.dto.RentalAgreement;
 import com.lyubich.toolrental.dto.Tool;
 import com.lyubich.toolrental.dto.ToolType;
+import com.lyubich.toolrental.exception.RentalException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,19 +56,11 @@ public class CheckoutService {
       BigDecimal discountAmount = pricingService.calculateDiscount(preDiscountCharge, discountPercent);
       BigDecimal finalCharge = pricingService.calculateFinalCharge(preDiscountCharge, discountAmount);
 
-      return new RentalAgreement(
-          tool,
-          toolType,
-          checkoutDate,
-          checkoutDate.plusDays(rentalDays),
-          toolType.getDailyCharge(),
-          rentalDays,
-          chargeDays,
-          preDiscountCharge,
-          discountPercent,
-          discountAmount,
-          finalCharge
+      return RentalAgreement.create(
+          tool, toolType, rentalDays, checkoutDate, checkoutDate.plusDays(rentalDays), toolType.getDailyCharge(),
+          chargeDays, preDiscountCharge, discountPercent, discountAmount, finalCharge
       );
+
     } catch (RentalException e) {
       throw e;
     } catch (Exception e) {

@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ToolCheckoutResponse {
-    @JsonProperty("agreement")
-    private RentalAgreementResponse agreement;
+  @JsonProperty("agreement")
+  private RentalAgreementResponse agreement;
 
-    @JsonProperty("success")
-    private boolean success;
+  @JsonProperty("success")
+  private boolean success;
 
-    @JsonProperty("message")
-    private String message;
+  @JsonProperty("message")
+  private String message;
 }

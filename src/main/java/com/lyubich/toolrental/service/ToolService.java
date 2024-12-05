@@ -1,7 +1,7 @@
 package com.lyubich.toolrental.service;
 
-import com.lyubich.toolrental.exception.RentalException;
 import com.lyubich.toolrental.dto.Tool;
+import com.lyubich.toolrental.exception.RentalException;
 import com.lyubich.toolrental.repository.ToolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
