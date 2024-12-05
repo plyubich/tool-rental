@@ -61,6 +61,11 @@ The high-level design captures the system’s architecture and its interactions:
 The low-level design dives deeper into specific components and their relationships:
 ![Low-Level Design](resources/readme/img.png)
 
+### Future Architecture
+For future scalability and extensibility, the application can evolve into a microservices-based architecture:
+![future_architecture.png](resources/readme/future_architecture.png)
+
+
 ## Why This System Matters
 This system is more than just a tool rental application—it’s the foundation for a scalable, resilient platform that can grow alongside the business. By addressing the core needs today, we’ve built a launchpad for a future-proof solution that can support a global customer base with enterprise-grade reliability, performance, and security.
 
